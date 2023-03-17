@@ -17,6 +17,8 @@ if( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
     )
 endif()
 
+set( CMAKE_DEBUG_POSTFIX "d" )
+
 add_executable(
     SuperPancake
     Viewer/App.config
@@ -30,6 +32,7 @@ add_executable(
     Viewer/Properties/Settings.Designer.cs
     Viewer/Properties/Settings.settings
 )
+set_target_properties( SuperPancake PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX} )
 
 csharp_set_designer_cs_properties(
     Viewer/Properties/AssemblyInfo.cs
