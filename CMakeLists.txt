@@ -9,8 +9,6 @@ project( SuperPancake
 
 include( CSharpUtilities )
 
-set_source_files_properties( stylecop.json PROPERTIES VS_TOOL_OVERRIDE "AdditionalFiles" )
-
 if( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
     set( CMAKE_INSTALL_PREFIX
          ${CMAKE_SOURCE_DIR}/build/install
@@ -31,7 +29,6 @@ add_executable(
     Viewer/Properties/Resources.resx
     Viewer/Properties/Settings.Designer.cs
     Viewer/Properties/Settings.settings
-    stylecop.json
 )
 
 csharp_set_designer_cs_properties(
