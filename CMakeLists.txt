@@ -3,14 +3,24 @@
 
 cmake_minimum_required( VERSION 3.25.1 )
 
-project( Astra
+project( SuperPancake
          LANGUAGES CSharp
 )
 
 include( CSharpUtilities )
 
+set_source_files_properties( stylecop.json PROPERTIES VS_TOOL_OVERRIDE "AdditionalFiles" )
+
+if( CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT )
+    set( CMAKE_INSTALL_PREFIX
+         ${CMAKE_SOURCE_DIR}/build/install
+         CACHE PATH "Force path to set CMAKE_INSTALL_PREFIX"
+         FORCE
+    )
+endif()
+
 add_executable(
-    Astra
+    SuperPancake
     Viewer/App.config
     Viewer/App.xaml
     Viewer/App.xaml.cs
@@ -21,6 +31,7 @@ add_executable(
     Viewer/Properties/Resources.resx
     Viewer/Properties/Settings.Designer.cs
     Viewer/Properties/Settings.settings
+    stylecop.json
 )
 
 csharp_set_designer_cs_properties(
@@ -47,14 +58,14 @@ set_property(
 
 set_property(
     TARGET
-    Astra
+    SuperPancake
     PROPERTY
     VS_DOTNET_TARGET_FRAMEWORK_VERSION
     "v4.8" )
 
 set_property(
     TARGET
-    Astra
+    SuperPancake
     PROPERTY
     WIN32_EXECUTABLE
     TRUE
@@ -62,7 +73,7 @@ set_property(
 
 set_property(
     TARGET
-    Astra
+    SuperPancake
     PROPERTY
     VS_DOTNET_REFERENCES
     "Microsoft.CSharp"
@@ -77,4 +88,10 @@ set_property(
     "System.Xml"
     "System.Xml.Linq"
     "WindowsBase"
+)
+
+install(
+    TARGETS SuperPancake
+    EXPORT SuperPancake
+    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}
 )
